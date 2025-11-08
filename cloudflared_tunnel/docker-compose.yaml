@@ -1,0 +1,8 @@
+services:
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    network_mode: "host"
+    container_name: cloudflared_tunnel
+    command: tunnel run --token ${cloudflare_tunnel_token}
+    environment:
+      TZ: ${time_zone}

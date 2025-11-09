@@ -1,0 +1,28 @@
+services:
+  automaticrippingmachine:
+    container_name: automaticrippingmachine
+    image: automaticrippingmachine/automatic-ripping-machine:latest
+    restart: always
+    privileged: true # Should run privileged as per documentation
+    ports:
+      - 8084:8080
+    cpus: 3
+    volumes:
+      - ${docker_volume_path}/automatic_ripping_machine/arm:/home/arm:rw
+      - ${docker_volume_path}/automatic_ripping_machine/config:/etc/arm/config
+      - ${docker_volume_path}/automatic_ripping_machine/logs:/etc/arm/logs
+      - type: bind
+        source: /qbittorrent-staging/automatic_ripping_machine/media
+        target: /home/arm/media
+      - type: bind
+        source: /qbittorrent-staging/automatic_ripping_machine/music
+        target: /home/arm/music
+
+    environment:
+      ARM_UID: ${uid}
+      ARM_GID: ${gid}
+      TZ: ${TZ}
+    devices:
+      - "/dev/sr0:/dev/sr0"
+      - "/dev/sg7:/dev/sg7"
+      - /dev/dri # For hardware acceleration, if available

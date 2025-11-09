@@ -1,0 +1,106 @@
+services:
+  vpn:
+    container_name: GlueTun-Nord
+    image: qmcgaw/gluetun:latest
+    networks:
+      - nordvpn
+    cap_add:
+      - NET_ADMIN
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=1  # Recommended if using ipv4 only
+    environment:
+      VPN_SERVICE_PROVIDER: nordvpn
+      OPENVPN_USER: ${openvpn_user}
+      OPENVPN_PASSWORD: ${openvpn_password}
+      SERVER_COUNTRIES: ${server_countries}
+      VPN_TYPE: openvpn
+      TZ: ${TZ}
+    ports:
+      - 8456:8080
+      - 9117:9117
+      - 8191:8191
+    restart: always
+
+  qbittorrent-nox:
+    network_mode: container:GlueTun-Nord
+    container_name: qbittorrent-nox
+    image: qbittorrentofficial/qbittorrent-nox:latest
+    environment:
+      PUID: ${qbittorrent_uid}
+      PGID: ${qbittorrent_gid}
+      QBT_LEGAL_NOTICE: confirm
+      QBT_VERSION: latest
+      QBT_WEBUI_PORT: 8080
+      TZ: ${TZ}
+      UMASK: 002
+    read_only: false # not compatible with changing UID/GID
+    stop_grace_period: 30m
+    tmpfs:
+      - /tmp
+    tty: true
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.torrent.rule=Host(`torrent.${public_domain_name}`) || Host(`torrent.${local_domain_name}`)
+      - traefik.http.services.torrent.loadbalancer.server.port=8080
+      - traefik.http.routers.torrent.entrypoints=websecure
+      - traefik.http.routers.torrent.tls=true
+      - traefik.http.routers.torrent.tls.certresolver=le
+      - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
+      - traefik.http.routers.entrypoints.middlewares=redirect-to-https
+
+    volumes:
+      - ${docker_volume_path}/vpn/qbittorrent-nox/config:/config
+      - type: bind
+        source: /qbittorrent-staging/downloads
+        target: /downloads
+      - type: bind
+        source: /qbittorrent-staging/complete
+        target: /completed_torrents
+      - type: bind
+        source: /qbittorrent-staging/torrents
+        target: /incomplete_torrents
+      - /${zfs_pool_name}/Videos/TV:/media/tv
+      - /${zfs_pool_name}/Videos/Films:/media/movies
+      - /${zfs_pool_name}/Musique:/media/Music
+    depends_on:
+      vpn:
+        condition: service_healthy
+      jackett:
+        condition: service_started
+
+  jackett:
+    network_mode: container:GlueTun-Nord
+    image: lscr.io/linuxserver/jackett:latest
+    container_name: jackett
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.jackett.rule=Host(`jackett.${public_domain_name}`) || Host(`jackett.${local_domain_name}`)
+      - traefik.http.services.jackett.loadbalancer.server.port=9117
+      - traefik.http.routers.jackett.entrypoints=websecure
+      - traefik.http.routers.jackett.tls=true
+    environment:
+      PUID: ${jackett_uid}
+      PGID: ${jackett_gid}
+      TZ: ${TZ}
+      AUTO_UPDATE: true #optional
+      RUN_OPTS: #optional
+    volumes:
+      - ${docker_volume_path}/vpn/jackett/data:/config
+      - /qbittorrent-staging/downloads
+    restart: unless-stopped
+    depends_on:
+      - vpn
+
+  flaresolverr:
+    network_mode: container:GlueTun-Nord
+    image: flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    environment:
+      TZ: ${TZ}
+    restart: unless-stopped
+
+networks:
+  nordvpn:
+    name: nordvpn
+    driver: bridge
+    external: true

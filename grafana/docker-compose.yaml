@@ -1,0 +1,22 @@
+services:
+  alloy:
+    image: grafana/alloy:latest
+    container_name: alloy
+    environment:
+      TZ: ${TZ}
+    volumes:
+      - type: bind
+        source: ${docker_volume_path}/grafana/config.alloy
+        target: /etc/alloy/config.alloy
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /:/hostfs:ro
+      - /proc:/hostfs/proc:ro
+      - /dev:/hostfs/dev:ro
+      - /mnt:/hostfs/mnt:ro
+    ports:
+      - "12441:12441"
+    command: >
+      run --server.http.listen-addr=0.0.0.0:12441 --storage.path=/var/lib/alloy/data /etc/alloy/config.alloy

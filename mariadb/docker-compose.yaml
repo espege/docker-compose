@@ -1,0 +1,39 @@
+services:
+
+  db:
+    image: library/mariadb:latest
+    restart: always
+    networks:
+      - mariadb
+    container_name: mariadb
+    ports:
+      - 3312:3306
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.mariadb.rule=Host(`mariadb.${public_domain_name}`) || Host(`mariadb.${local_domain_name}`)
+      - traefik.http.routers.mariadb.entrypoints=web
+      - traefik.http.services.mariadb.loadbalancer.server.port=3306
+    volumes:
+      - ${docker_volume_path}/mariadb:/var/lib/mysql
+    environment:
+      MARIADB_USER: ${mariadb_user}
+      MARIADB_PASSWORD: ${mariadb_password}
+      MARIADB_ROOT_PASSWORD: ${mariadb_root_password}
+      MARIADB_AUTO_UPGRADE: ${mariadb_auto_upgrade}
+
+  adminer:
+    image: library/adminer:latest
+    networks:
+      - mariadb
+    restart: always
+    ports:
+      - 8306:8080
+    labels:
+    - traefik.enable=true
+    - traefik.http.routers.mariaadmin.rule=Host(`mariaadmin.${public_domain_name}`) || Host(`mariaadmin.${local_domain_name}`)
+    - traefik.http.routers.mariaadmin.entrypoints=web
+    - traefik.http.services.mariaadmin.loadbalancer.server.port=8080
+
+networks:
+  mariadb:
+    driver: bridge

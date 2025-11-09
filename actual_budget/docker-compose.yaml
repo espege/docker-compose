@@ -1,0 +1,25 @@
+services:
+  actual_server:
+    container_name: actual
+    image: actualbudget/actual-server:latest-alpine
+    networks:
+      - actual_budget
+    ports:
+      - 5006:5006
+    environment:
+      TZ: ${TZ}
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.actual.rule=Host(`actual.${public_domain_name}`) || Host(`budget.${public_domain_name}`) || Host(`budget.${local_domain_name}`)
+      - traefik.http.routers.actual.entrypoints=websecure
+      - traefik.http.middlewares.actual.headers.customrequestheaders.Host=actual.${public_domain_name}
+      - traefik.http.services.actual.loadbalancer.server.port=5006
+
+    volumes:
+      - ${docker_volume_path}/actual_budget/actual-data:/data
+    restart: unless-stopped
+
+networks:
+  actual_budget:
+    name: actual_network
+    driver: bridge

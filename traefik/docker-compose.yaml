@@ -1,6 +1,6 @@
 services:
   proxy:
-    image: library/traefik:latest         # Review traefik documentation https://doc.traefik.io/traefik/
+    image: library/traefik:latest@sha256:e8405d7ad57fa9870d66e4ddac854836551cff869f3b8059c997c98869eadd08         # Review traefik documentation https://doc.traefik.io/traefik/
     container_name: traefik
     networks:
       - nordvpn

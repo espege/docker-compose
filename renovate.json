@@ -1,0 +1,26 @@
+{
+  "extends": ["config:base"],
+  "packageRules": [
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["actualbudget/actual-server"],
+      "groupName": "actual-budget-updates",
+      "versioning": "loose",
+      "allowedVersions": "/latest-alpine$/",
+      "pinDigests": true,
+      "separateMinorPatch": false,
+      "automerge": true
+    },
+    {
+      "matchDatasources": ["docker"],
+      "excludePackageNames": ["actualbudget/actual-server"],
+      "groupName": "docker-base-updates",
+      "pinDigests": true
+    }
+  ],
+  "docker": {
+    "enabled": true,
+    "pinDigests": true
+  },
+  "enabledManagers": ["docker-compose", "dockerfile"]
+}

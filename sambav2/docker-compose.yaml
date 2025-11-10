@@ -9,8 +9,8 @@ services:
     ports:
       - 445:445
     volumes:
-      - ./smb.conf:/etc/samba/smb.conf
-      - ./users.conf:/etc/samba/users.conf
+      - ${docker_volume_path}/sambav2/smb.conf:/etc/samba/smb.conf
+      - ${docker_volume_path}/sambav2/users.conf:/etc/samba/users.conf
       - /${zfs_pool_name}/OneDriveDS/Pictures/:/shares/onedrive_photos:rw
       - /qbittorrent-staging/automatic_ripping_machine/media/:/shares/arm:rw
     restart: always

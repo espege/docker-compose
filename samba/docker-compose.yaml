@@ -29,15 +29,15 @@ services:
       # SAMBA_GLOBAL_CONFIG_fruit_COLON_posix_rename: yes
       # User MGMT
 
-      GROUP_onedrive: ${onedrive_group_id}
+      # GROUP_onedrive: ${onedrive_group_id}
       GROUP_plex_media: ${media_group_id}
 
-      # USER 1
+      # ONEDRIVE USER
       UID_onedrive: ${onedrive_uid}
       ACCOUNT_onedrive: ${onedrive_pwd}
-      GROUPS_onedrive: onedrive
+      # GROUPS_onedrive: onedrive
 
-      # USER 2
+      # ARM USER
       UID_arm: ${arm_uid}
       ACCOUNT_arm: ${onedrive_pwd}
       GROUPS_arm: plex_media

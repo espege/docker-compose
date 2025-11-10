@@ -1,0 +1,73 @@
+
+services:
+  samba:
+    image: ghcr.io/servercontainers/samba:smbd-avahi-latest
+    container_name: samba
+    network_mode: host
+    ports:
+      - "445:445"
+    restart: unless-stopped
+    environment:
+      FAIL_FAST: 1
+      MODEL: 'MacSamba'
+      SAMBA_CONF_LOG_LEVEL: 3
+
+      # Global
+      SAMBA_GLOBAL_CONFIG_min_SPACE_protocol: SMB3
+      # Useeful for MacOS
+      SAMBA_GLOBAL_CONFIG_fruit_COLON_metadata: stream
+      # SAMBA_GLOBAL_CONFIG_server_SPACE_multi_SPACE_channel_SPACE_support: yes
+      # SAMBA_GLOBAL_CONFIG_aio_SPACE_write_SPACE_size: 16384
+      # SAMBA_GLOBAL_CONFIG_aio_SPACE_read_SPACE_size: 16384
+      # SAMBA_GLOBAL_CONFIG_fruit_COLON_zero_file_id: yes
+      # SAMBA_GLOBAL_CONFIG_fruit_COLON_encoding: native
+      # Unclear benefit
+      # SAMBA_GLOBAL_CONFIG_fruit_COLON_veto_appledouble: no
+      # SAMBA_GLOBAL_CONFIG_fruit_COLON_nfs_aces: no
+      # SAMBA_GLOBAL_CONFIG_fruit_COLON_wipe_intentionally_left_blank_rfork: yes
+      # SAMBA_GLOBAL_CONFIG_fruit_COLON_delete_empty_adfiles: yes
+      # SAMBA_GLOBAL_CONFIG_fruit_COLON_posix_rename: yes
+      # User MGMT
+
+      GROUP_onedrive: ${onedrive_group_id}
+      GROUP_plex_media: ${media_group_id}
+
+      # USER 1
+      UID_user1: ${user1_uid}
+      ACCOUNT_user1: ${user1_pwd}
+      GROUPS_user1: onedrive
+
+      # USER 2
+      UID_user2: ${user2_uid}
+      ACCOUNT_user2: ${user1_pwd}
+      GROUPS_user2: plex_media
+
+      SAMBA_VOLUME_CONFIG_photos_sp: |
+        [PhotosSP]
+        path = /shares/onedrive_photos
+        browsable = yes
+        writable = yes
+        read only = no
+        guest ok = no
+        valid users = user1
+        force group = onedrive
+        create mask = 0660
+        directory mask = 2660
+        veto files = /._*/.DS_Store/
+        delete veto files = yes
+      SAMBA_VOLUME_CONFIG_automaticrippingmachine: |
+        [AutomaticRippingMachine]
+        path = /shares/arm
+        browsable = yes
+        writable = no
+        read only = no
+        guest ok = no
+        valid users = user2
+        force group = plex_media
+        create mask = 0770
+        directory mask = 2770
+        veto files = /._*/.DS_Store/
+        delete veto files = no
+    volumes:
+      - /${zfs_pool_name}/OneDriveDS/Pictures/:/shares/onedrive_photos:rw
+      - /qbittorrent-staging/automatic_ripping_machine/media/:/shares/arm:rw

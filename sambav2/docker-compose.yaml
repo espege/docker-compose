@@ -1,0 +1,16 @@
+services:
+  samba:
+    image: dockurr/samba
+    container_name: samba
+    network_mode: host
+    environment:
+      UID: ${uid}
+      GID: ${gid}
+    ports:
+      - 445:445
+    volumes:
+      - ./smb.conf:/etc/samba/smb.conf
+      - ./users.conf:/etc/samba/users.conf
+      - /${zfs_pool_name}/OneDriveDS/Pictures/:/shares/onedrive_photos:rw
+      - /qbittorrent-staging/automatic_ripping_machine/media/:/shares/arm:rw
+    restart: always

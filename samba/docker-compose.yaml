@@ -33,14 +33,14 @@ services:
       GROUP_plex_media: ${media_group_id}
 
       # USER 1
-      UID_user1: ${user1_uid}
-      ACCOUNT_user1: ${user1_pwd}
-      GROUPS_user1: onedrive
+      UID_onedrive: ${onedrive_uid}
+      ACCOUNT_onedrive: ${onedrive_pwd}
+      GROUPS_onedrive: onedrive
 
       # USER 2
-      UID_user2: ${user2_uid}
-      ACCOUNT_user2: ${user1_pwd}
-      GROUPS_user2: plex_media
+      UID_arm: ${arm_uid}
+      ACCOUNT_arm: ${onedrive_pwd}
+      GROUPS_arm: plex_media
 
       SAMBA_VOLUME_CONFIG_photos_sp: |
         [PhotosSP]
@@ -49,7 +49,7 @@ services:
         writable = yes
         read only = no
         guest ok = no
-        valid users = user1
+        valid users = onedrive
         force group = onedrive
         create mask = 0660
         directory mask = 2660
@@ -62,7 +62,7 @@ services:
         writable = no
         read only = no
         guest ok = no
-        valid users = user2
+        valid users = arm
         force group = plex_media
         create mask = 0770
         directory mask = 2770

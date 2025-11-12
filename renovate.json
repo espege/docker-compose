@@ -3,8 +3,13 @@
   "packageRules": [
     {
       "matchDatasources": ["docker"],
+      "groupName": "docker-base-updates",
+      "pinDigests": true
+    },
+    {
+      "matchDatasources": ["docker"],
       "matchPackageNames": ["actualbudget/actual-server"],
-      "groupName": "actual-budget-updates",
+      "groupName": "docker-latest-alpine-tag-automerge",
       "versioning": "loose",
       "allowedVersions": "/latest-alpine$/",
       "pinDigests": true,
@@ -13,8 +18,29 @@
     },
     {
       "matchDatasources": ["docker"],
+      "groupName": "docker-latest-tag-automerge",
+      "versioning": "loose",
+      "allowedVersions": "/latest$/",
+      "matchPackageNames": [
+        "automaticrippingmachine/automatic-ripping-machine",
+        "cloudflare/cloudflared",
+        "grafana/alloy",
+        "plexinc/pms-docker",
+        "semaphoreui/semaphore",
+        "library/traefik",
+        "qmcgaw/gluetun",
+        "lscr.io/linuxserver/jackett",
+        "flaresolverr/flaresolverr"
+      ],
       "excludePackageNames": ["actualbudget/actual-server"],
-      "groupName": "docker-base-updates",
+      "pinDigests": true,
+      "separateMinorPatch": false,
+      "automerge": true
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "groupName": "no-automerge-major",
+      "automerge": false,
       "pinDigests": true
     }
   ],

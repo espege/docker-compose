@@ -70,7 +70,7 @@ services:
 
   jackett:
     network_mode: container:GlueTun-Nord
-    image: lscr.io/linuxserver/jackett:latest@sha256:88fd8f019a80b733058cf9342d40d4384260e1e235a88cfef5eff49a0fc2a247
+    image: lscr.io/linuxserver/jackett:latest@sha256:d88ee538a1a1290e0b7476c6b07424313246546a06ff280d0a0f021fc716dda5
     container_name: jackett
     labels:
       - traefik.enable=true

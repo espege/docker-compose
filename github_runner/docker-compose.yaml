@@ -1,6 +1,6 @@
 services:
   github-runner:
-    image: espege/github-runner:latest@sha256:4e66defeb1c831df5d6008a02785d4484556ea21e68f32c3a591f71bc14fe830
+    image: espege/github-runner:latest
     container_name: github-runner
     restart: unless-stopped
     environment:

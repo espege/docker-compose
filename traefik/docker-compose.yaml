@@ -3,7 +3,6 @@ services:
     image: library/traefik:latest@sha256:aaf0f6185419a50c74651448c1a5bf4606bd2d2ddb7b8749eed505d55bf8b8ea         # Review traefik documentation https://doc.traefik.io/traefik/
     container_name: traefik
     networks:
-      - nginx_network
       - nordvpn
       - plex
       - actual_network

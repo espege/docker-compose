@@ -10,10 +10,10 @@ services:
       TZ: ${TZ}
     labels:
       - traefik.enable=true
-      - traefik.http.routers.actual.rule=Host(`koko.${public_domain_name}`)
-      - traefik.http.routers.actual.entrypoints=websecure
-      - traefik.http.middlewares.actual.headers.customrequestheaders.Host=koko.${public_domain_name}
-      - traefik.http.services.actual.loadbalancer.server.port=5007
+      - traefik.http.routers.actual2.rule=Host(`koko.${public_domain_name}`)
+      - traefik.http.routers.actual2.entrypoints=websecure
+      - traefik.http.middlewares.actual2.headers.customrequestheaders.Host=koko.${public_domain_name}
+      - traefik.http.services.actual2.loadbalancer.server.port=5007
 
     volumes:
       - ${docker_volume_path}/actual_budget_2/actual-data:/data

@@ -3,6 +3,7 @@ services:
     image: library/traefik:latest@sha256:82d3d16dde0474a51fef00b28de143d48b67f7a27453224d5e7b5aaefff26a97         # Review traefik documentation https://doc.traefik.io/traefik/
     container_name: traefik
     networks:
+      - actual_network_2
       - nordvpn
       - plex
       - actual_network
@@ -51,6 +52,11 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ${docker_volume_path}/traefik/letsencrypt:/letsencrypt
 networks:
+# BEGIN NETWORK ACTUAL_NETWORK_2
+  actual_network_2:
+    driver: bridge
+    external: true
+# END NETWORK ACTUAL_NETWORK_2
 # BEGIN NETWORK NGINX_NETWORK
   nginx_network:
     driver: bridge

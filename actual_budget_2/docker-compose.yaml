@@ -13,7 +13,7 @@ services:
       - traefik.http.routers.actual2.rule=Host(`koko.${public_domain_name}`)
       - traefik.http.routers.actual2.entrypoints=websecure
       - traefik.http.middlewares.actual2.headers.customrequestheaders.Host=koko.${public_domain_name}
-      - traefik.http.services.actual2.loadbalancer.server.port=5007
+      - traefik.http.services.actual2.loadbalancer.server.port=5006
 
     volumes:
       - ${docker_volume_path}/actual_budget_2/actual-data:/data

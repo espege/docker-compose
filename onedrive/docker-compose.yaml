@@ -1,7 +1,7 @@
 services:
   onedrive:
     container_name: onedrive
-    image: driveone/onedrive:edge@sha256:9cce6a719ba9929a38306329ca539e93cd244af4034da73e2da55fb77741a648
+    image: driveone/onedrive:edge@sha256:976989e10dcf887c3d1b3cbd0b69d0297e19038c219d9831a8f559641d350316
     restart: unless-stopped
     environment: # https://github.com/abraunegg/onedrive/blob/master/docs/docker.md
       TZ: ${TZ}

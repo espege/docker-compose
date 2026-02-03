@@ -1,7 +1,7 @@
 services:
   postgres:
     restart: unless-stopped
-    image: library/postgres:14@sha256:5fd97d3efae5e17da18b5884532f07c411330253e0a864d8895f176ab4ab0f90
+    image: library/postgres:14@sha256:44b2944d4beb460aa7582fc2ae9f37bfee4a75788b76f2bf25312094029e4680
     hostname: postgres
     networks:
      - semaphore

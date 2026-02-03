@@ -24,7 +24,7 @@ services:
   qbittorrent-nox:
     network_mode: container:GlueTun-Nord
     container_name: qbittorrent-nox
-    image: qbittorrentofficial/qbittorrent-nox:latest@sha256:41888f4e05646ace98aeaff01a7bbec714e2e6082ab273fd4af0d1210352ea2c
+    image: qbittorrentofficial/qbittorrent-nox:latest@sha256:85fe2690f418dabffc4907276b3cdffcb7880c7114157b32f932d3b97bac45af
     environment:
       PUID: ${qbittorrent_uid}
       PGID: ${qbittorrent_gid}

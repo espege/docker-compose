@@ -1,7 +1,7 @@
 services:
   vpn:
     container_name: GlueTun-Nord
-    image: qmcgaw/gluetun:latest@sha256:e3c42d634cfd781639f6b87ed3e606b67dc5d27b90fe5fb8c607d9dc7b4ed63f
+    image: qmcgaw/gluetun:latest@sha256:1aa28a0db802279d852b08d2358867bd75e2e319431a5da53d3cbb9a6c19fdab
     networks:
       - nordvpn
     cap_add:
@@ -70,7 +70,7 @@ services:
 
   jackett:
     network_mode: container:GlueTun-Nord
-    image: lscr.io/linuxserver/jackett:latest@sha256:fa8592915f07d565cd76d82aabec9d8b6aa71601926615c42aac21a0fbf2a0bd
+    image: lscr.io/linuxserver/jackett:latest@sha256:dbf5d10c2e7b32d914a0c164f448ddcbbec5d68387ee32a5ba275d1aa208b9ad
     container_name: jackett
     labels:
       - traefik.enable=true

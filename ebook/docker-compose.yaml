@@ -2,7 +2,7 @@ services:
   send2ereader:
     build:
       context: /data/dockerfiles_test/ebooks/send2ereader
-      dockerfile: /data/dockerfiles_test/ebooks/send2ereader/Dockerfile
+      dockerfile: Dockerfile
     container_name: send2ereader
     # Restart means, Automatic re-start the container after a shutdown unless manual stop container
     restart: unless-stopped

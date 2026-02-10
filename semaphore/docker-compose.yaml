@@ -5,6 +5,7 @@ services:
     hostname: postgres
     networks:
      - semaphore
+     - registry_network
     volumes:
      -  ${docker_volume_path}/semaphore:/var/lib/postgresql/data
     environment:

@@ -5,13 +5,13 @@ services:
     hostname: postgres
     networks:
      - semaphore
-     - registry_network
     volumes:
      -  ${docker_volume_path}/semaphore:/var/lib/postgresql/data
     environment:
      POSTGRES_USER: ${pg_username}
      POSTGRES_PASSWORD: ${pg_password}
      POSTGRES_DB: semaphore
+
   semaphore:
     restart: unless-stopped
     ports:
@@ -20,6 +20,7 @@ services:
     image: semaphoreui/semaphore:latest@sha256:316520f513e3c964d23cdd40709777a6a452e275020627aba406e9bd9c08adde
     networks:
      - semaphore
+     - registry_network
     environment:
       TZ: ${TZ}
       SEMAPHORE_DB_USER: ${sempahore_db_user}
@@ -56,4 +57,9 @@ networks:
     ipam:
       config:
         - subnet: "${semaphore_subnet}"
+    external: true
+  registry:
+    name: registry_network
+    driver: bridge
+    internal: true
     external: true

@@ -3,12 +3,13 @@ services:
     image: library/traefik:latest@sha256:a9890c898f379c1905ee5b28342f6b408dc863f08db2dab20e46c267d1ff463a         # Review traefik documentation https://doc.traefik.io/traefik/
     container_name: traefik
     networks:
+      - registry_network
+      - semaphore_network
       - actual_network_2
       - nordvpn
       - plex
       - actual_network
       - portainer_network
-      - semaphore
     command:
       - --api.insecure=true
       - --api=true
@@ -52,6 +53,16 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ${docker_volume_path}/traefik/letsencrypt:/letsencrypt
 networks:
+# BEGIN NETWORK REGISTRY_NETWORK
+  registry_network:
+    driver: bridge
+    external: true
+# END NETWORK REGISTRY_NETWORK
+# BEGIN NETWORK SEMAPHORE_NETWORK
+  semaphore_network:
+    driver: bridge
+    external: true
+# END NETWORK SEMAPHORE_NETWORK
 # BEGIN NETWORK ACTUAL_NETWORK_2
   actual_network_2:
     driver: bridge
@@ -67,11 +78,6 @@ networks:
     driver: bridge
     external: true
 # END NETWORK NORDVPN
-# BEGIN NETWORK SEMAPHORE
-  semaphore:
-    driver: bridge
-    external: true
-# END NETWORK SEMAPHORE
 # BEGIN NETWORK PLEX
   plex:
     driver: bridge

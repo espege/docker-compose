@@ -1,8 +1,9 @@
 services:
   registry:
-    networks:
-      - registry_network
     image: registry:latest
+    networks:
+      - semaphore
+      - portainer
     environment:
       REGISTRY_AUTH: htpasswd
       REGISTRY_AUTH_HTPASSWD_REALM: Registry Realm
@@ -14,11 +15,15 @@ services:
       # Mount the data directory
       - ./registry/data:/data
     ports:
-      - 5000
+      - 5000:5000
 
 networks:
-  registry:
-    name: registry_network
+  semaphore:
+    name: semaphore
     driver: bridge
-    internal: true
+    external: true
+
+  portainer_network:
+    name: portainer_network
+    driver: bridge
     external: true

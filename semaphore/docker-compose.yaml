@@ -1,7 +1,7 @@
 services:
   postgres:
     restart: unless-stopped
-    image: library/postgres:14@sha256:44b2944d4beb460aa7582fc2ae9f37bfee4a75788b76f2bf25312094029e4680
+    image: library/postgres:14
     hostname: postgres
     networks:
      - semaphore
@@ -17,10 +17,9 @@ services:
     ports:
       - 3000:3000
       - 2222:22
-    image: semaphoreui/semaphore:latest@sha256:316520f513e3c964d23cdd40709777a6a452e275020627aba406e9bd9c08adde
+    image: semaphoreui/semaphore:latest
     networks:
      - semaphore
-     - registry_network
     environment:
       TZ: ${TZ}
       SEMAPHORE_DB_USER: ${sempahore_db_user}

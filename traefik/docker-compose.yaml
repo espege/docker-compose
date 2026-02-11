@@ -4,13 +4,13 @@ services:
     container_name: traefik
     networks:
       - registry_network
+      - semaphore
       - actual_network_2
       - nginx_network
       - nordvpn
       - plex
       - actual_network
       - portainer_network
-      - semaphore
     command:
       - --api.insecure=true
       - --api=true

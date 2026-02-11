@@ -3,7 +3,7 @@ services:
     image: registry:latest
     networks:
       - semaphore
-      - portainer
+      - portainer_network
     environment:
       REGISTRY_AUTH: htpasswd
       REGISTRY_AUTH_HTPASSWD_REALM: Registry Realm

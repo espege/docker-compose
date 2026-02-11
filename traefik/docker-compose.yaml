@@ -6,7 +6,6 @@ services:
       - registry_network
       - actual_network_2
       - nginx_network
-      - nginx_static
       - nordvpn
       - plex
       - actual_network

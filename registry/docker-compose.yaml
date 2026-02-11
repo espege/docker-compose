@@ -1,7 +1,7 @@
 services:
   registry:
     networks:
-      - registry
+      - registry_network
     image: registry:latest
     environment:
       REGISTRY_AUTH: htpasswd

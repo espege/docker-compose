@@ -54,12 +54,4 @@ networks:
   semaphore:
     name: semaphore
     driver: bridge
-    ipam:
-      config:
-        - subnet: "${semaphore_subnet}"
-    external: true
-  registry:
-    name: registry_network
-    driver: bridge
-    internal: true
     external: true

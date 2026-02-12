@@ -36,6 +36,9 @@ services:
       SEMAPHORE_ACCESS_KEY_ENCRYPTION: ${semaphore_access_key_encryption}
       SEMAPHORE_SSH_PORT: 22 # Used to connect to host
       SEMAPHORE_SSH_HOST: ${ansible_host}
+      SEMAPHORE_RUNNER_REGISTRATION_TOKEN: ${semaphore_runner_registration_token}
+      SEMAPHORE_USE_REMOTE_RUNNER: "${semaphore_use_remote_runner}"
+
     extra_hosts:
       - host.docker.internal:${ansible_host}
     labels:

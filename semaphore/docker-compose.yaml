@@ -19,7 +19,7 @@ services:
     ports:
       - 3000:3000
       - 2222:22
-    image: semaphoreui/semaphore:latest@sha256:c213bd7805120c23a47a72e9ed2e2f9dd967cdc4ade83c48dc02011d5f294b6b
+    image: semaphoreui/semaphore:latest
     networks:
      - semaphore
     environment:
@@ -62,6 +62,8 @@ services:
       SEMAPHORE_RUNNER_PRIVATE_KEY_FILE: ${semaphore_runner_private_key_file}
     volumes:
       - ${docker_volume_path}/${docker_stack_name}/semaphore_runner/config.runner.key:/config.runner.key
+    depends_on:
+      - semaphore
 
 volumes:
   semaphore-postgres:

@@ -57,7 +57,7 @@ services:
     networks:
       - semaphore
     environment:
-      SEMAPHORE_WEB_ROOT: https://${docker_stack_name}
+      SEMAPHORE_WEB_ROOT: http://${docker_stack_name}:3000
       SEMAPHORE_RUNNER_TOKEN: ${semaphore_runner_token}
       SEMAPHORE_RUNNER_PRIVATE_KEY_FILE: ${semaphore_runner_private_key_file}
     volumes:

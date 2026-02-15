@@ -53,7 +53,7 @@ services:
 
   sempaphore_runner:
     container_name: semaphore_runner
-    image: semaphoreui/runner:latest
+    image: registry:5000/semaphore-runner-custom:latest
     networks:
       - semaphore
     environment:

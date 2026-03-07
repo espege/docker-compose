@@ -1,0 +1,24 @@
+services:
+  nginx:
+    image: nginx:1-alpine
+    container_name: nginx
+    ports:
+      - ${nginx_file_server_port}:80
+    networks:
+      - nginx_static
+    environment:
+      TZ: ${TZ}
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.nginx.rule=Host(`${nginx_file_server_name}.${public_domain_name}`)
+      - traefik.http.routers.nginx.entrypoints=websecure
+      - traefik.http.routers.nginx.tls=true
+      - traefik.http.services.nginx.loadbalancer.server.port=80
+    volumes:
+      - ${nginx_file_server_shared_file_path}:/mnt/share/${nginx_file_server_shared_file_name}:ro
+      - ${docker_volume_path}/nginx/etc/nginx/conf.d:/etc/nginx/conf.d
+
+networks:
+  nginx_static:
+    name: nginx_network
+    driver: bridge

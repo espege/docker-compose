@@ -1,6 +1,6 @@
 services:
   nginx:
-    image: nginx:1-alpine
+    image: nginx:1-alpine@sha256:e7257f1ef28ba17cf7c248cb8ccf6f0c6e0228ab9c315c152f9c203cd34cf6d1
     container_name: nginx
     ports:
       - ${nginx_file_server_port}:80

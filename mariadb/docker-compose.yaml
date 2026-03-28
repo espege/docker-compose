@@ -1,7 +1,7 @@
 services:
 
   db:
-    image: library/mariadb:latest@sha256:f54db0cb3ccfe9431aba6d08c65a1763c499789b116b4cb651dd7fcf325965b3
+    image: library/mariadb:latest@sha256:e16f61b8f6ed25111adbb1c5c19bbc2904efc8ed14029999af0cbe1c7ae18bf1
     restart: always
     networks:
       - mariadb
@@ -22,7 +22,7 @@ services:
       MARIADB_AUTO_UPGRADE: ${mariadb_auto_upgrade}
 
   adminer:
-    image: library/adminer:latest@sha256:a3167350c4eb9ae4473b8ea0f49c8e5ae74c87b240ee2f6086521dba2a6bf243
+    image: library/adminer:latest@sha256:16a72c6140f64d00a3a9edf8d3d3b18a7b0a29ca31b0453378d9eb71f01f9e34
     networks:
       - mariadb
     restart: always

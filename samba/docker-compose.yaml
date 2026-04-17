@@ -1,6 +1,6 @@
 services:
   samba:
-    image: dockurr/samba@sha256:31a3937b314e4ef5046d25194228f9dbcf58c851f96f76130eb1ac346e081500
+    image: dockurr/samba@sha256:63428d1cb6c1ace60cfa782c1d6c9e4b3686044fc47600c97055e6b62e9bb5fa
     container_name: samba
     network_mode: host
     environment:

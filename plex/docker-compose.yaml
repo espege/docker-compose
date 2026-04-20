@@ -2,7 +2,7 @@ services:
   plex:
     container_name: plex
     hostname: plex
-    image: plexinc/pms-docker:latest@sha256:1131c4cd21fa22f8196f749f1dbb69af306776c3c83c7f5b061e51dc49bcff7f
+    image: plexinc/pms-docker:latest@sha256:8b5bcdf7b506fe051aa1a0a0d464efdb3ad8c0fb1f8a4dfb27a8c489b609920c
     restart: unless-stopped
     networks:
       - plex

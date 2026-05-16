@@ -1,6 +1,6 @@
 services:
   proxy:
-    image: library/traefik:latest@sha256:8cb20d16e01a53d8d7f7696ac2f1af7d200d5c9984d226ce2299731d9eab6d6c         # Review traefik documentation https://doc.traefik.io/traefik/
+    image: library/traefik:latest@sha256:6b9cbca6fac42ab0075f5437d8dc1685cfd188626d8d515839ea94f8b6271c42         # Review traefik documentation https://doc.traefik.io/traefik/
     container_name: traefik
     networks:
       - registry_network

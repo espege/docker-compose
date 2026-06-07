@@ -59,6 +59,8 @@ services:
       SEMAPHORE_WEB_ROOT: http://${docker_stack_name}:3000
       SEMAPHORE_RUNNER_TOKEN: ${semaphore_runner_token}
       SEMAPHORE_RUNNER_PRIVATE_KEY_FILE: ${semaphore_runner_private_key_file}
+    extra_hosts:
+      - "semaphore:localhost/3000"
     volumes:
       - ${docker_volume_path}/${docker_stack_name}/semaphore_runner/config.runner.key:/config.runner.key
     depends_on:

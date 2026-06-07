@@ -22,9 +22,6 @@ services:
     image: semaphoreui/semaphore:latest@sha256:f6d328dce9f05de71c392464083d10566bb89aa8c7140e5461eed25464f4a1e6
     networks:
      - semaphore
-    extra_hosts:
-      - host.docker.internal:host-gateway
-      - host.docker.internal:${ansible_host}
     environment:
       TZ: ${TZ}
       SEMAPHORE_DB_USER: ${sempahore_db_user}
@@ -55,7 +52,11 @@ services:
   sempaphore_runner:
     container_name: semaphore_runner
     image: registry:5000/semaphore-runner-custom:latest
-    network_mode: host
+    networks:
+     - semaphore
+    extra_hosts:
+      - host.docker.internal:host-gateway
+      - ${host_machine}:${ansible_host}
     environment:
       SEMAPHORE_WEB_ROOT: http://${docker_stack_name}:3000
       SEMAPHORE_RUNNER_TOKEN: ${semaphore_runner_token}

@@ -57,7 +57,7 @@ services:
     networks:
      - semaphore
     extra_hosts:
-      - host.docker.internal:${ansible_host}
+      - host.docker.internal:host-gateway
     environment:
       SEMAPHORE_WEB_ROOT: http://${docker_stack_name}:3000
       SEMAPHORE_RUNNER_TOKEN: ${semaphore_runner_token}

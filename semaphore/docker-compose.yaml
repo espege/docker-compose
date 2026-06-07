@@ -54,10 +54,9 @@ services:
   sempaphore_runner:
     container_name: semaphore_runner
     image: registry:5000/semaphore-runner-custom:latest
-    networks:
-     - semaphore
+    network_mode: host
     extra_hosts:
-      - host.docker.internal:host-gateway
+      - "host.docker.internal:host-gateway"
     environment:
       SEMAPHORE_WEB_ROOT: http://${docker_stack_name}:3000
       SEMAPHORE_RUNNER_TOKEN: ${semaphore_runner_token}

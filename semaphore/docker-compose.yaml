@@ -61,8 +61,10 @@ services:
       SEMAPHORE_WEB_ROOT: http://${docker_stack_name}:3000
       SEMAPHORE_RUNNER_TOKEN: ${semaphore_runner_token}
       SEMAPHORE_RUNNER_PRIVATE_KEY_FILE: ${semaphore_runner_private_key_file}
+      DOCKER_HOST: unix:///var/run/docker.sock
     volumes:
       - ${docker_volume_path}/${docker_stack_name}/semaphore_runner/config.runner.key:/config.runner.key
+      - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       - semaphore
 

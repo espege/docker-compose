@@ -3,8 +3,8 @@ services:
     command: 
       ./start.sh
     build:
-      context: ${docker_volume_path}/webserver
-      dockerfile: ${docker_volume_path}/webserver/Dockerfile
+      context: .
+      dockerfile: Dockerfile
     container_name: music_website
     working_dir: /app
     networks:

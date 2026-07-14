@@ -1,10 +1,8 @@
 services:
   music_website:
+    image: python:3.14-alpine
     command: 
       ./start.sh
-    build:
-      context: .
-      dockerfile: Dockerfile
     container_name: music_website
     working_dir: /app
     networks:

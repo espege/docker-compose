@@ -22,7 +22,7 @@ services:
       - traefik.http.middlewares.music_website.headers.customrequestheaders.Host=trad.${public_domain_name}
       - traefik.http.services.music_website.loadbalancer.server.port=5000
     volumes:
-      - ${docker_volume_path}/webserver/:/app
+      - ${docker_volume_path}/webserver/app:/app
       - ${docker_volume_path}/webserver/data/seed:/mnt/seed:ro
       - ${docker_volume_path}/webserver/data/scores:/mnt/scores:ro
 

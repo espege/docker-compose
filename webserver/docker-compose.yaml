@@ -24,8 +24,8 @@ services:
       - traefik.http.services.music_website.loadbalancer.server.port=5000
     volumes:
       - ${docker_volume_path}/webserver/app:/app
-      - ${docker_volume_path}/webserver/app/mnt/seed/seed_db.py:/app/seed_db.py:ro
-      - ${docker_volume_path}/webserver/app/mnt/scores:/app/scores:ro
+      - ${docker_volume_path}/webserver/data/seed/seed_db.py:/app/seed_db.py:ro
+      - ${docker_volume_path}/webserver/data/scores:/app/scores:ro
 
 networks:
   music_website:

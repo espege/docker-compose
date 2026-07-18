@@ -1,7 +1,7 @@
 services:
   music_website:
     image: python:3.14-alpine
-    command: 
+    command:
       ./start.sh
     container_name: music_website
     working_dir: /app

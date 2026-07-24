@@ -2,7 +2,7 @@ services:
   postgres:
     container_name: semaphore_db
     restart: unless-stopped
-    image: library/postgres:14@sha256:a209aced4fa19381231fae4d9a4c5816f7691294f13572f8bddc082ba32e1c7c
+    image: library/postgres:14@sha256:caf49e3b10d377aa2cfee478591d623808527beb27125d38797b418013f72d81
     hostname: postgres
     networks:
      - semaphore

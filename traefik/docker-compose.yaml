@@ -1,6 +1,6 @@
 services:
   proxy:
-    image: library/traefik:latest         # Review traefik documentation https://doc.traefik.io/traefik/
+    image: library/traefik:latest@sha256:4299bbed850421258fc5448c2e0e6ad350981d4d335a68de11b92448aedbefe5         # Review traefik documentation https://doc.traefik.io/traefik/
     container_name: traefik
     networks:
       - music_website_network

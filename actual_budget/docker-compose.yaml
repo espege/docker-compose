@@ -1,7 +1,7 @@
 services:
   actual_server:
     container_name: actual
-    image: actualbudget/actual-server:latest-alpine@sha256:1d2712f4a69677f94c27f0ccdd817903dab5fa897f0e0ff4e165f9c77a8ebbb5
+    image: actualbudget/actual-server:latest-alpine@sha256:136b1aa9c3070583cb5493cba370c36290b7d2505c0222bf38a4b097fcac6a40
     networks:
       - actual_budget
     ports:

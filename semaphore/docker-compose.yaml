@@ -19,7 +19,7 @@ services:
     ports:
       - 3000:3000
       - 2222:22
-    image: semaphoreui/semaphore:latest@sha256:f6d328dce9f05de71c392464083d10566bb89aa8c7140e5461eed25464f4a1e6
+    image: semaphoreui/semaphore:latest@sha256:8886d55da349f6d600f66f2c6dd2be01a3a5b4265542b04cb6c10ae47e4306d2
     networks:
      - semaphore
     environment:

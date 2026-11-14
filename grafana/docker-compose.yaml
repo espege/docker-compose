@@ -1,6 +1,6 @@
 services:
   alloy:
-    image: grafana/alloy:latest@sha256:89a5a320168387336b9ac3c850609c3ba7757eadd4ae5f1d819deb35e9854b18
+    image: grafana/alloy:latest@sha256:9acc2529bc1edb7f5b2bd801dd8334ebc80c158e3a9e5526ecd7c9a273d43189
     container_name: alloy
     environment:
       TZ: ${TZ}

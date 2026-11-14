@@ -3,6 +3,7 @@ services:
     image: library/traefik:latest@sha256:c8a121e4bb1347e8fd52657fab12f2cb70b68f8a018895e2068f92c9e519b9c2         # Review traefik documentation https://doc.traefik.io/traefik/
     container_name: traefik
     networks:
+      - radicale_network
       - music_website_network
       - registry_network
       - semaphore
@@ -55,6 +56,12 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ${docker_volume_path}/traefik/letsencrypt:/letsencrypt
 networks:
+# BEGIN NETWORK RADICALE_NETWORK
+  radicale_network:
+    driver: bridge
+    internal: False
+    external: true
+# END NETWORK RADICALE_NETWORK
 # BEGIN NETWORK MUSIC_WEBSITE_NETWORK
   music_website_network:
     driver: bridge

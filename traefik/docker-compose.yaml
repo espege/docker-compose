@@ -55,6 +55,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ${docker_volume_path}/traefik/letsencrypt:/letsencrypt
+      - ${docker_volume_path}/radicale/config/users:/auth/radicale:ro
 networks:
 # BEGIN NETWORK RADICALE_NETWORK
   radicale_network:

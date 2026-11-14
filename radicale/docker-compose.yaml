@@ -13,6 +13,9 @@ services:
         limits:
           memory: 256M
           pids: 50
+    environment: 
+      - TZ=${TZ}
+      - RADICALE_CONFIG=/etc/radicale/config
     healthcheck:
       test: curl -f http://127.0.0.1:5232 || exit 1
       interval: 30s
@@ -21,4 +24,4 @@ services:
     volumes:
       - ${docker_volume_path}/radicale/collections:/var/lib/radicale/collections
       - ${docker_volume_path}/radicale/config/config:/etc/radicale/config:ro
-      - ${docker_volume_path}/radicale/config/users:/etc/radicale/users:ro
+      - ${docker_volume_path}/radicale/config/users:/etc/radicale/config:ro

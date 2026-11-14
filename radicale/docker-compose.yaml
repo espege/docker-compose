@@ -31,4 +31,4 @@ services:
     volumes:
       - ${docker_volume_path}/radicale/data/config:/etc/radicale/config:ro
       - ${docker_volume_path}/radicale/data/users:/etc/radicale/users:ro
-      - ${docker_volume_path}/radicale/data/collections:/etc/radicale/collections:rw
+      - ${docker_volume_path}/radicale/collections:/var/lib/radicale/collections

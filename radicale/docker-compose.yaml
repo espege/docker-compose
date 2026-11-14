@@ -29,7 +29,6 @@ services:
       retries: 3
     restart: unless-stopped
     volumes:
-      - ${docker_volume_path}/radicale/data:/var/lib/radicale
       - ${docker_volume_path}/radicale/collections:/var/lib/radicale/collections
       - ${docker_volume_path}/radicale/config/config:/etc/radicale/config:ro
       - ${docker_volume_path}/radicale/config/users:/etc/radicale/users:ro

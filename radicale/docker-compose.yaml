@@ -3,7 +3,7 @@
 
 services:
   radicale:
-    image: tomsquest/docker-radicale
+    image: tomsquest/docker-radicale@sha256:b85d953637628a5037f70e3bd6459dcd4138131cfc952e4c9e725b0fbd6c2ac5
     container_name: radicale
     ports:
       - 5232:5232

@@ -75,6 +75,7 @@ services:
           create_host_path: false
     labels:
       - "traefik.enable=true"
+      - "traefik.docker.network=rallly_network"
       - "traefik.http.routers.rallyweb.rule=Host(`rdv.${public_domain_name}`)"
       - "traefik.http.routers.rallyweb.entrypoints=websecure"
       - "traefik.http.services.rallyweb.loadbalancer.server.port=3000"

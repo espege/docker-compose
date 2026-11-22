@@ -1,8 +1,9 @@
 services:
   proxy:
-    image: library/traefik:latest@sha256:c8a121e4bb1347e8fd52657fab12f2cb70b68f8a018895e2068f92c9e519b9c2         # Review traefik documentation https://doc.traefik.io/traefik/
+    image: library/traefik:latest         # Review traefik documentation https://doc.traefik.io/traefik/
     container_name: traefik
     networks:
+      - rallly_network
       - radicale_network
       - music_website_network
       - registry_network
@@ -57,6 +58,12 @@ services:
       - ${docker_volume_path}/traefik/letsencrypt:/letsencrypt
       - ${docker_volume_path}/radicale/config/users:/auth/radicale:ro
 networks:
+# BEGIN NETWORK RALLLY_NETWORK
+  rallly_network:
+    driver: bridge
+    internal: False
+    external: true
+# END NETWORK RALLLY_NETWORK
 # BEGIN NETWORK RADICALE_NETWORK
   radicale_network:
     driver: bridge

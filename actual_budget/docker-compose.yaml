@@ -13,6 +13,7 @@ services:
       - traefik.http.routers.actual.rule=Host(`actual.${public_domain_name}`) || Host(`budget.${public_domain_name}`)
       - traefik.http.routers.actual.entrypoints=websecure
       - traefik.http.middlewares.actual.headers.customrequestheaders.Host=actual.${public_domain_name}
+      - traefik.http.services.actual.loadbalancer.server.scheme=https
       - traefik.http.services.actual.loadbalancer.server.port=5006
       - traefik.docker.network=actual_budget
       - traefik.http.routers.actual.tls.certresolver=le

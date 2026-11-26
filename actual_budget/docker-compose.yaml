@@ -10,12 +10,12 @@ services:
       TZ: ${TZ}
     labels:
       - traefik.enable=true
-      - traefik.http.routers.actual.rule=Host(`actual.${public_domain_name}`) || Host(`budget.${public_domain_name}`) || Host(`budget.${local_domain_name}`)
+      - traefik.http.routers.actual.rule=Host(`actual.${public_domain_name}`) || Host(`budget.${public_domain_name}`)
       - traefik.http.routers.actual.entrypoints=websecure
       - traefik.http.middlewares.actual.headers.customrequestheaders.Host=actual.${public_domain_name}
       - traefik.http.services.actual.loadbalancer.server.port=5006
       - traefik.docker.network=actual_budget
-      - traefik.http.routers.torrent.tls.certresolver=le
+      - traefik.http.routers.actual.tls.certresolver=le
 
     volumes:
       - ${docker_volume_path}/actual_budget/actual-data:/data

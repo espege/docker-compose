@@ -11,7 +11,7 @@
       "matchPackageNames": ["vaultwarden/server"],
       "groupName": "docker-vault-warden",
       "versioning": "loose",
-      "allowedVersions": "/latest-alpine$/",
+      "allowedVersions": "/alpine-latest$/",
       "pinDigests": true
     },
     {

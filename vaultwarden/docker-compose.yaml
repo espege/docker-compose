@@ -10,12 +10,11 @@ services:
     volumes:
       - ./vw-data/:/data/
     ports:
-      - 127.0.0.1:6666:80
+      - 127.0.0.1:${vaultwarden_external_port}:80
     labels:
-      - "vaultwarden.http.routers.api.rule=Host(`vault.${public_domain_name}`) || Host(`mdp.${public_domain_name}`)"
-      - "vaultwarden.http.routers.api.service=api@internal"
-      - "vaultwarden.http.routers.api.middlewares=auth"
-
+      - traefik.enable=true
+      - traefik.http.routers.vaultwarden.rule=Host(`vault.${public_domain_name}`) || Host(`mdp.${public_domain_name}`)
+      - traefik.http.routers.vaultwarden.entrypoints=websecure
 networks:
   vaultwarden:
     name: vaultwarden

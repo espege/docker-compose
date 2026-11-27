@@ -8,12 +8,19 @@
     },
     {
       "matchDatasources": ["docker"],
+      "matchPackageNames": ["vaultwarden/server"],
+      "groupName": "docker-vault-warden",
+      "versioning": "loose",
+      "allowedVersions": "/latest-alpine$/",
+      "pinDigests": true
+    },
+    {
+      "matchDatasources": ["docker"],
       "matchPackageNames": ["actualbudget/actual-server"],
       "groupName": "docker-latest-alpine-tag-automerge",
       "versioning": "loose",
       "allowedVersions": "/latest-alpine$/",
       "pinDigests": true,
-      "separateMinorPatch": false,
       "automerge": true
     },
     {
@@ -34,7 +41,6 @@
       ],
       "excludePackageNames": ["actualbudget/actual-server"],
       "pinDigests": true,
-      "separateMinorPatch": false,
       "automerge": true
     },
     {

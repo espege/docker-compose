@@ -3,8 +3,8 @@ services:
     image: library/traefik:latest         # Review traefik documentation https://doc.traefik.io/traefik/
     container_name: traefik
     networks:
+      - vaultwarden
       - rallly_network
-      - radicale_network
       - music_website_network
       - registry_network
       - semaphore
@@ -56,20 +56,19 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ${docker_volume_path}/traefik/letsencrypt:/letsencrypt
-      - ${docker_volume_path}/radicale/config/users:/auth/radicale:ro
 networks:
+# BEGIN NETWORK VAULTWARDEN
+  vaultwarden:
+    driver: bridge
+    internal: False
+    external: true
+# END NETWORK VAULTWARDEN
 # BEGIN NETWORK RALLLY_NETWORK
   rallly_network:
     driver: bridge
     internal: False
     external: true
 # END NETWORK RALLLY_NETWORK
-# BEGIN NETWORK RADICALE_NETWORK
-  radicale_network:
-    driver: bridge
-    internal: False
-    external: true
-# END NETWORK RADICALE_NETWORK
 # BEGIN NETWORK MUSIC_WEBSITE_NETWORK
   music_website_network:
     driver: bridge

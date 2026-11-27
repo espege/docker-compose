@@ -1,0 +1,23 @@
+services:
+  vaultwarden:
+    image: vaultwarden/server:alpine-latest
+    container_name: vaultwarden
+    restart: unless-stopped
+    networks:
+      - vaultwarden
+    environment:
+      DOMAIN: "https://vw.${public_domain_name}"
+    volumes:
+      - ./vw-data/:/data/
+    ports:
+      - 127.0.0.1:6666:80
+    labels:
+      - "vaultwarden.http.routers.api.rule=Host(`vault.${public_domain_name}`) || Host(`mdp.${public_domain_name}`)"
+      - "vaultwarden.http.routers.api.service=api@internal"
+      - "vaultwarden.http.routers.api.middlewares=auth"
+
+networks:
+  vaultwarden:
+    name: vaultwarden
+    driver: bridge
+    external: true

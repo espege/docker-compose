@@ -1,7 +1,7 @@
 services:
   automaticrippingmachine:
     container_name: automaticrippingmachine
-    image: automaticrippingmachine/automatic-ripping-machine:latest@sha256:2e0cac76b4a1ed0dd3b633f6cbfef1e817146ba323c8e2d16c7e940a59d277ee
+    image: automaticrippingmachine/automatic-ripping-machine:latest@sha256:8362338e347606ed34374501a3c9e91d785417614ffda5d769fbfc7ab8475012
     restart: always
     privileged: true # Should run privileged as per documentation
     ports:

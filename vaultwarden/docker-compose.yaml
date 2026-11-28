@@ -6,7 +6,7 @@ services:
     networks:
       - vaultwarden
     environment:
-      DOMAIN: "https://vw.${public_domain_name}"
+      DOMAIN: "https://mdp.${public_domain_name}"
     volumes:
       - ./vw-data/:/data/
     ports:

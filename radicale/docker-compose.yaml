@@ -3,7 +3,7 @@
 
 services:
   radicale:
-    image: tomsquest/docker-radicale
+    image: tomsquest/docker-radicale@sha256:bca96836d5ee98084bb8e5cbbf40d659d1319bc2d93def2b9132abef43657c91
     container_name: radicale
     init: true
     deploy:
